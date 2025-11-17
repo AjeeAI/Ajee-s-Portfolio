@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  /* Custom colors for the portfolio */
+  --color-dark-primary: #0f172a;
+  --color-dark-secondary: #1e293b;
+  --color-accent-blue: #60a5fa;
+  --color-accent-purple: #a78bfa;
+  
+  /* Custom animations */
+  --animation-fade-in: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom component classes */
+@layer components {
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgb(100 116 139), transparent);
+    margin: 2rem 0;
+  }
+  
+  .btn-primary {
+    background-color: rgb(37 99 235);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: rgb(29 78 216);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+  }
+  
+  .btn-secondary {
+    border: 2px solid rgb(96 165 250);
+    color: rgb(96 165 250);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+  }
+  
+  .btn-secondary:hover {
+    background-color: rgba(96, 165, 250, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .nav-link {
+    color: rgb(203 213 225);
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: rgb(96 165 250);
+  }
+  
+  .social-link {
+    color: rgb(148 163 184);
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
+  
+  .social-link:hover {
+    color: rgb(96 165 250);
+    transform: translateY(-5px);
+  }
+}
+
+/* Base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--color-dark-primary);
+    color: rgb(226 232 240);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+}
