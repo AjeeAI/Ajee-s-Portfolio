@@ -22,7 +22,7 @@ const Hero = () => {
   ]
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 w-full ">
+    <section className="min-h-screen flex items-center justify-center pt-20 w-full " id='hero'>
       <div className="container mx-auto px-6 flex flex-col items-center text-center">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
