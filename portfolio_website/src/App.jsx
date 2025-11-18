@@ -9,18 +9,26 @@ import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
+
 function App() {
   return (
     <div className="min-h-screen bg-dark-primary">
       <Header />
-      <Routes>
+      <Hero/>
+      <About/>
+      <TechStack/>
+      <Projects/>
+      <Experience/>
+      <Contact/>
+      {/* <Routes>
         <Route path="/" element={<Hero />} />
         <Route path="/about" element={<About />} />
         <Route path="/tech-stack" element={<TechStack />} />
         <Route path="/experience" element={<Experience />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
-      </Routes>
+        
+      </Routes> */}
       <Footer />
     </div>
   )

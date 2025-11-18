@@ -26,7 +26,7 @@ const About = () => {
           <h1 className="text-4xl font-bold text-white mb-8">About Me</h1>
           
           <p className="text-slate-400 mb-8 text-lg">
-            I'm Ajee, a full-stack developer passionate about building efficient, scalable applications. 
+            I'm Ajijolaoluwa Adesoji, a full-stack developer passionate about building efficient, scalable applications. 
             With deep experience in mobile development with Flutter, dynamic front-ends with React, 
             and robust back-end systems with FastAPI, I thrive on creating seamless user experiences 
             from concept to deployment.

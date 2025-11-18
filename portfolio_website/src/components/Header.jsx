@@ -5,13 +5,6 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
 
-  const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/experience', label: 'Experience' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/contact', label: 'Contact' }
-  ]
 
   return (
     <header className="fixed top-0 w-full z-50 bg-dark-primary/95 backdrop-blur-sm border-b border-slate-700">
@@ -26,17 +19,24 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`text-slate-300 hover:text-white font-medium transition-colors ${
-                  location.pathname === item.path ? 'text-white' : ''
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            <a href='#techstack'>
+              Tech Stack
+            </a>
+            <a href='#projects'>
+              Projects
+            </a>
+
+            <a href='#about'>
+              About
+            </a>
+
+            <a href='#experience'>
+              Experience
+            </a>
+
+            <a href='#contact'>
+              Contact
+            </a>
             <a 
               href="/resume.pdf" 
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors"
@@ -75,14 +75,14 @@ const Header = () => {
                 {item.label}
               </Link>
             ))}
-                        <a 
-  href="/src/assets/Resume.pdf"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors text-center"
->
-  View CV
-</a>
+            <a 
+              href="/src/assets/Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors text-center"
+            >
+              View CV
+            </a>
           </div>
         )}
       </div>

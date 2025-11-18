@@ -6,7 +6,46 @@ from pydantic import BaseModel, Field, EmailStr
 from sqlalchemy import text
 from dotenv import load_dotenv
 
+
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
 load_dotenv()
+
+
+
+def send_email_to_admin(name, email, subject, message):
+    admin_email = os.getenv("admin_email")
+    admin_password = os.getenv("admin_email_password")  # Use App Password
+
+    msg = MIMEMultipart()
+    msg["From"] = admin_email
+    msg["To"] = admin_email
+    msg["Subject"] = f"New Portfolio Message: {subject}"
+
+    body = f"""
+    A new message has been sent from your portfolio site:
+
+    Name: {name}
+    Email: {email}
+    Subject: {subject}
+
+    Message:
+    {message}
+    """
+
+    msg.attach(MIMEText(body, "plain"))
+
+    # Gmail SMTP example
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+        server.starttls()
+        server.login(admin_email, admin_password)
+        server.send_message(msg)
+
+
+
+
 app = FastAPI(title="Portfolio Backend API", version="1.0.0")
 
 app.add_middleware(
@@ -55,6 +94,16 @@ def send_message(message: Message):
         )
         
         db.commit()
+        
+         # NEW: Send email to admin
+        send_email_to_admin(
+            message.name,
+            message.email,
+            message.subject,
+            message.message
+        )
+
+        return {"message": "Message sent successfully"}
     except HTTPException as e:
         raise e
     
@@ -72,9 +121,27 @@ def get_messages():
         if not result:
             return "No messages yet!"
         messages = result.mappings().fetchall()
-        return {
-            "data": messages
-        }
+        return messages
+    
         
     except HTTPException as e:
         raise e
+    
+    
+class Login(BaseModel):
+    username: str = Field(..., example="admin")
+    password: str = Field(..., example="admin1234")
+    
+@app.post("/api/login")
+def login(login: Login):
+    try: 
+        admin_username = os.getenv("admin_username")
+        admin_password = os.getenv("admin_password")
+        if login.username == admin_username and login.password == admin_password:
+            return {"message": "Login successful"}
+        else:
+            raise HTTPException(status_code=401, detail="Invalid credentials")
+        
+    except HTTPException as e:
+        raise e
+    
